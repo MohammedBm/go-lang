@@ -23,12 +23,7 @@ func main() {
 		or an array of integer. You cannot have an array of both types. also array is a fixed length
 		on the other hand, slice can have a different length.complex128
 	*/
-	cards := deck{newCard(), "Five of Hearts"}
-	cards = append(cards, "Six of Spades")
+	cards := newDeck()
 
 	cards.print()
-}
-
-func newCard() string {
-	return "Five of Diamonds"
 }
