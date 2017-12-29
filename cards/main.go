@@ -23,7 +23,12 @@ func main() {
 		or an array of integer. You cannot have an array of both types. also array is a fixed length
 		on the other hand, slice can have a different length.complex128
 	*/
+	// now we will use the newDeck function that we created on the deck.go file
 	cards := newDeck()
 
-	cards.print()
+	hand, remaningCards := deal(cards, 5)
+
+	hand.print()
+	remaningCards.print()
+	// cards.print()
 }

@@ -41,3 +41,9 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+// Here we are calling a function with an argument of d and deck and handSize of type of int
+// this function below should return to slices.  it should take two slices and split them into two
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
+}
