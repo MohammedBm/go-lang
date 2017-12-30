@@ -26,9 +26,11 @@ func main() {
 	// now we will use the newDeck function that we created on the deck.go file
 	cards := newDeck()
 
-	hand, remaningCards := deal(cards, 5)
+	// hand, remaningCards := deal(cards, 5)
 
-	hand.print()
-	remaningCards.print()
 	// cards.print()
+	// hand.print()
+	// remaningCards.print()
+	// fmt.Println(cards.toString())
+	cards.saveToFile("my_cards")
 }
