@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
 )
 
 // create a new type of deck
@@ -46,4 +49,28 @@ func (d deck) print() {
 // this function below should return to slices.  it should take two slices and split them into two
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// this function will take a deck and return a string
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+// this function will save our data to the machine. first it will take the filenmae,
+// then it will take the slice and turn it into a string after that it will be turned to byte.
+// the last argument is the premission to write or read the file we are saveing into
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+// this function will take a file and read its content
+// it will receive the file name and outpot what inside it
+func newDeckFromFile(filename string) deck {
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		// Option #1 - log the error and return a call to newDeck()
+		// Option #2 - Log the error and close the applicaion
+		fmt.Println("Erorr:", err)
+		os.Exit(1)
+	}
 }
