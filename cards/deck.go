@@ -3,10 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-<<<<<<< HEAD
+	"math/rand"
 	"os"
-=======
->>>>>>> 64107b58a162cd7b3cdd3d499388e8a08f7151d1
 	"strings"
 )
 
@@ -68,6 +66,8 @@ func (d deck) saveToFile(filename string) error {
 
 // this function will take a file and read its content
 // it will receive the file name and outpot what inside it
+// now we will have byte slice that we need to turn into a string se we
+// can read it
 func newDeckFromFile(filename string) deck {
 	bs, err := ioutil.ReadFile(filename)
 	if err != nil {
@@ -75,5 +75,19 @@ func newDeckFromFile(filename string) deck {
 		// Option #2 - Log the error and close the applicaion
 		fmt.Println("Erorr:", err)
 		os.Exit(1)
+	}
+	// bs => byteSlice. These will rturn a string of this sort
+	// Ace of spade, King of tiles. basically it will return a deck
+	s := strings.Split(string(bs), ",")
+	return deck(s) // this will return a deck!
+}
+
+// this function will shuffle our slice and return it
+func (d deck) shuffle() {
+	// we are following convention so instead of using index we are going to use `i`
+	for i := range d {
+		newPostion := rand.Intn(len(d) - 1)
+
+		d[i], d[newPostion] = d[newPostion], d[i]
 	}
 }

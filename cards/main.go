@@ -24,7 +24,7 @@ func main() {
 		on the other hand, slice can have a different length.complex128
 	*/
 	// now we will use the newDeck function that we created on the deck.go file
-	cards := newDeck()
+	// cards := newDeck()
 
 	// hand, remaningCards := deal(cards, 5)
 
@@ -32,5 +32,15 @@ func main() {
 	// hand.print()
 	// remaningCards.print()
 	// fmt.Println(cards.toString())
-	cards.saveToFile("my_cards")
+	// cards.saveToFile("my_cards")
+
+	// these below will reads the file we created before `my_cards`
+	// after reading the file it will print what inside it
+	// cards := newDeckFromFile("my_cards")
+	// cards.print()
+
+	// these couple of line below will shuffle the slice and sort them in a new order
+	cards := newDeck()
+	cards.shuffle()
+	cards.print()
 }
