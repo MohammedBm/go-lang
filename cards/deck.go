@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 // create a new type of deck
@@ -84,9 +85,14 @@ func newDeckFromFile(filename string) deck {
 
 // this function will shuffle our slice and return it
 func (d deck) shuffle() {
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
 	// we are following convention so instead of using index we are going to use `i`
+	// we will always have the same random set of slice since we are always using the
+	// same seed, so we will need to truly create a random sequence
 	for i := range d {
-		newPostion := rand.Intn(len(d) - 1)
+		newPostion := r.Intn(len(d) - 1)
 
 		d[i], d[newPostion] = d[newPostion], d[i]
 	}
